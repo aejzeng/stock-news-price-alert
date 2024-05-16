@@ -7,9 +7,9 @@ COMPANY_NAME = "Tesla Inc"
 
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-stock_api_key = "HCGINWMCJUQU7YMA"
+stock_api_key = "YOUR_OWN_API_KEY"
 stock_endpoint = "https://www.alphavantage.co/query"
-news_api_key = "b214722829974aa18e6b9cb73948a489"
+news_api_key = "YOUR_OWN_API_KEY"
 news_endpoint = "https://newsapi.org/v2/everything"
 stock_function = "TIME_SERIES_DAILY"
 
@@ -35,8 +35,9 @@ stock_data = response.json()["Time Series (Daily)"]
 formatted_stock_price = [value for (key, value) in stock_data.items()]
 today_price = formatted_stock_price[0]["4. close"]  #As a string data type
 yesterday_price = formatted_stock_price[1]["4. close"]
-print(today_price)
-print(yesterday_price)
+
+# print(today_price)
+# print(yesterday_price)
 
 #Calculate the percentage change
 price_diff = float(yesterday_price) - float(today_price)
@@ -81,16 +82,16 @@ if abs(diff_percentage) > 0:
 
     ## STEP 3: Use https://www.twilio.com
     # Send a seperate message with the percentage change and each article's title and description to your phone number.
-    account_sid = "AC3e137c4b52191eefe694bc3152f22ecd"
-    auth_token = "10fbab13b0fb7f2d8fa1e1f6bbb55eca"
+    account_sid = "YOUR_OWN_ACCOUNT_SID"
+    auth_token = "YOUR_OWN_AUTH_TOKEN"
 
     client = Client(account_sid, auth_token)
 
     for article in formatted_three_articles_list:
         message = client.messages.create(
-            from_="+15078734364",
+            from_="YOUR_REGISTERED_PHONE_#",
             body=article,
-            to="+4917684482519"
+            to="YOUR_DESTINED_PHONE_#"
         )
         print(formatted_three_articles_list)
         print(message.status)
